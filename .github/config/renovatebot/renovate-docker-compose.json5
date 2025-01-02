@@ -1,5 +1,6 @@
 {
   description: "Keeps Docker Compose up to date",
+  semanticCommitScope: "docker-compose",
   packageRules: [
     // Disable Minor and Major updates by default.
     {
