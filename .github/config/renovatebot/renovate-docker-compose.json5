@@ -5,7 +5,10 @@
     // Disable Minor and Major updates by default.
     {
       enabled: false,
-      matchFileNames: ["docker-compose/versions/camunda-8*/**"],
+      matchFileNames: [
+        "docker-compose/versions/camunda-8*/.**",
+        "docker-compose/versions/camunda-8*/**"
+      ],
       matchUpdateTypes: ["minor", "major"],
     },
     // Disable unsupported Camunda versions.

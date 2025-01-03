@@ -1,0 +1,21 @@
+{
+  dependencyDashboard: true,
+  semanticCommitType: "deps",
+  "extends": [
+    "config:base", "helpers:pinGitHubActionDigests"
+  ],
+  labels: [
+    "dependencies"
+  ],
+  patch: {
+    enabled: true,
+  },
+  hostRules: [
+    {
+      hostType: "docker",
+      matchHost: "https://registry.camunda.cloud",
+      username: "{{ secrets.DISTRO_CAMUNDA_DOCKER_REGISTRY_USERNAME }}",
+      password: "{{ secrets.DISTRO_CAMUNDA_DOCKER_REGISTRY_PASSWORD }}",
+    },
+  ],
+}

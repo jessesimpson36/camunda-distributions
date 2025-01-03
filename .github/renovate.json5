@@ -1,22 +1,11 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  // Keep the order, last item in the array wins.
+  // https://docs.renovatebot.com/key-concepts/presets/#how-to-use-presets
   extends: [
     "config:recommended",
     "github>camunda/camunda-self-managed//.github/config/renovatebot/renovate-docker-compose.json5",
     "github>camunda/camunda-self-managed//.github/config/renovatebot/renovate-aws-marketplace.json5",
-    ":semanticCommitTypeAll(deps)",
-  ],
-  dependencyDashboard: true,
-  labels: ["dependencies"],
-  patch: {
-    enabled: true,
-  },
-  hostRules: [
-    {
-      hostType: "docker",
-      matchHost: "https://registry.camunda.cloud",
-      username: "{{ secrets.DISTRO_CAMUNDA_DOCKER_REGISTRY_USERNAME }}",
-      password: "{{ secrets.DISTRO_CAMUNDA_DOCKER_REGISTRY_PASSWORD }}",
-    },
+    "github>camunda/camunda-self-managed//.github/config/renovatebot/renovate-main.json5",
   ],
 }
