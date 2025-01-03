@@ -1,6 +1,5 @@
 {
   dependencyDashboard: true,
-  semanticCommitType: "deps",
   "extends": [
     "config:base", "helpers:pinGitHubActionDigests"
   ],
