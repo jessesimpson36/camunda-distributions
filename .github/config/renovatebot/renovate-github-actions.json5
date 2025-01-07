@@ -1,0 +1,10 @@
+{
+  description: "Keeps GitHub Actions up to date",
+  semanticCommitScope: "github-actions",
+  packageRules: [
+    {
+      matchUpdateTypes: ["minor", "patch", "pin", "digest"],
+      matchFileNames: [".github/**"],
+    },
+  ],
+}
