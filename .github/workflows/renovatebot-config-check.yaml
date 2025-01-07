@@ -24,6 +24,4 @@ jobs:
       uses: docker://renovate/renovate
       with:
         args: |
-          renovate-config-validator \
-            .github/renovate.json5 \
-            .github/config/renovatebot/*
+          renovate-config-validator .github/renovate.json5 .github/config/renovatebot/*
