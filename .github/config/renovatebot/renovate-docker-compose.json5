@@ -1,6 +1,5 @@
 {
   description: "Keeps Docker Compose up to date",
-  semanticCommitScope: "docker-compose",
   packageRules: [
     // Disable Minor and Major updates by default.
     {
@@ -20,6 +19,13 @@
         "docker-compose/versions/camunda-8.2/**",
       ],
     },
+    // Set global config.
+    {
+      addLabels: ["deps/docker-compose"],
+      semanticCommitScope: "docker-compose",
+      matchFileNames: ["docker-compose/versions/**"],
+    },
+
     //
     // Main groups.
     // This section should be updated with the Camunda supported versions.
