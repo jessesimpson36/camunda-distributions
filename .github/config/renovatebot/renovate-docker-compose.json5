@@ -6,7 +6,7 @@
       enabled: false,
       matchFileNames: [
         "docker-compose/versions/camunda-8*/.**",
-        "docker-compose/versions/camunda-8*/**"
+        "docker-compose/versions/camunda-8*/**",
       ],
       matchUpdateTypes: ["minor", "major"],
     },
@@ -69,10 +69,9 @@
     },
   ],
 
-  regexManagers: [
+  customManagers: [
     {
-      // This is mainly used to update Web-Modeler image tag.
-      // section is copied from camunda/camunda-platform-helm
+      customType: "regex",
       fileMatch: [".env"],
       datasourceTemplate: "docker",
       matchStrings: [
@@ -81,10 +80,8 @@
       versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
     },
     {
-      fileMatch: [
-        ".env",
-        ".keycloak/Dockerfile"
-      ],
+      customType: "regex",
+      fileMatch: [".env", ".keycloak/Dockerfile"],
       matchStrings: [
         "KEYCLOAK_SERVER_VERSION\\s*=\\s*(?<currentValue>\\S+)",
         "KEYCLOAK_VERSION\\s*=\\s*(?<currentValue>\\S+)",
