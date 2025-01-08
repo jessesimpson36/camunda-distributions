@@ -6,14 +6,7 @@ on:
       imageTag:
         description: "The image tag for the connectors image"
         required: true
-        # renovate: datasource=docker depName=camunda/connectors-bundle
-        default: 8.6.5
         type: string
-  push:
-    branches:
-      - main
-    paths:
-      - '.github/workflows/aws-marketplace-connectors.yaml'
 
 jobs:
   build:

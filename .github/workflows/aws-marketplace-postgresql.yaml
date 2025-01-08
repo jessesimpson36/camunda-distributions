@@ -6,14 +6,7 @@ on:
       imageTag:
         description: "The image tag for the postgresql image"
         required: true
-        # renovate: datasource=docker depName=bitnami/postgresql
-        default: 15.8.0
-  push:
-    branches:
-      - main
-    paths:
-      - '.github/workflows/aws-marketplace-postgresql.yaml'
-
+        type: string
 jobs:
   build:
     permissions:

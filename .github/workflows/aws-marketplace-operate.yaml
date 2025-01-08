@@ -6,13 +6,7 @@ on:
       imageTag:
         description: "The image tag for the Camunda images"
         required: true
-        # renovate: datasource=docker depName=camunda/operate
-        default: 8.6.6
-  push:
-    branches:
-      - main
-    paths:
-      - '.github/workflows/aws-marketplace-operate.yaml'
+        type: string
 
 jobs:
   build:

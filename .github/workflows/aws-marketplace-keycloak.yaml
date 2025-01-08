@@ -6,13 +6,7 @@ on:
       imageTag:
         description: "The image tag for the keycloak image"
         required: true
-        # renovate: datasource=docker depName=bitnami/keycloak
-        default: 22.0.5
-  push:
-    branches:
-      - main
-    paths:
-      - '.github/workflows/aws-marketplace-keycloak.yaml'
+        type: string
 
 jobs:
   build:
