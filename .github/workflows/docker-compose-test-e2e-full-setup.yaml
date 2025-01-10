@@ -36,24 +36,80 @@ jobs:
       fail-fast: false
       matrix:
         versions:
-          - name: Camunda 8.3
+          # Camunda 8.3
+          - name: Camunda 8.3 ⭐
             camunda-version: "8.3"
-            compose-args: "-f docker-compose.yaml -f docker-compose-web-modeler.yaml"
-          - name: Camunda 8.4
+            main-compose-args: "-f docker-compose.yaml"
+            e2e-test-enabled: false
+          - name: Camunda 8.3 - Identity Disabled
+            camunda-version: "8.3"
+            main-compose-args: "-f docker-compose-core.yaml"
+            e2e-test-enabled: false
+          - name: Camunda 8.3 - Web Modeler Standalone
+            camunda-version: "8.3"
+            deps-compose-args: "--profile identity"
+            main-compose-args: "-f docker-compose-web-modeler.yaml"
+            e2e-test-enabled: false
+          # Camunda 8.4
+          - name: Camunda 8.4 ⭐
             camunda-version: "8.4"
-            compose-args: "-f docker-compose.yaml -f docker-compose-web-modeler.yaml"
-          - name: Camunda 8.5
+            main-compose-args: "-f docker-compose.yaml"
+            e2e-test-enabled: false
+          - name: Camunda 8.4 - Identity Disabled
+            camunda-version: "8.4"
+            main-compose-args: "-f docker-compose-core.yaml"
+            e2e-test-enabled: false
+          - name: Camunda 8.4 - Web Modeler Standalone
+            camunda-version: "8.4"
+            deps-compose-args: "--profile identity"
+            main-compose-args: "-f docker-compose-web-modeler.yaml"
+            e2e-test-enabled: false
+          # Camunda 8.5
+          - name: Camunda 8.5 ⭐
             camunda-version: "8.5"
-            compose-args: "-f docker-compose.yaml -f docker-compose-web-modeler.yaml"
-          - name: Camunda 8.6
+            main-compose-args: "-f docker-compose.yaml"
+            e2e-test-enabled: false
+          - name: Camunda 8.5 - Identity Disabled
+            camunda-version: "8.5"
+            main-compose-args: "-f docker-compose-core.yaml"
+            e2e-test-enabled: false
+          - name: Camunda 8.5 - Web Modeler Standalone
+            camunda-version: "8.5"
+            deps-compose-args: "--profile identity"
+            main-compose-args: "-f docker-compose-web-modeler.yaml"
+            e2e-test-enabled: false
+          # Camunda 8.6
+          - name: Camunda 8.6 ⭐
             camunda-version: "8.6"
-            compose-args: "--profile full"
-          - name: Camunda Alpha
+            e2e-test-enabled: true
+          - name: Camunda 8.6 - Identity Disabled
+            camunda-version: "8.6"
+            main-compose-args: "-f docker-compose-core.yaml"
+            e2e-test-enabled: false
+          - name: Camunda 8.6 - Web Modeler Standalone
+            camunda-version: "8.6"
+            deps-compose-args: "--profile identity"
+            main-compose-args: "-f docker-compose-web-modeler.yaml"
+            e2e-test-enabled: false
+          # Camunda Alpha
+          - name: Camunda Alpha ⭐
             camunda-version: "alpha"
-            compose-args: "--profile full"
+            main-compose-args: "-f docker-compose.yaml"
+            e2e-test-enabled: true
+          - name: Camunda Alpha - Identity Disabled
+            camunda-version: "alpha"
+            main-compose-args: "-f docker-compose-core.yaml"
+            e2e-test-enabled: false
+          - name: Camunda Alpha - Web Modeler Standalone
+            camunda-version: "alpha"
+            deps-compose-args: "--profile identity"
+            main-compose-args: "-f docker-compose-web-modeler.yaml"
+            e2e-test-enabled: false
         exclude: ${{ fromJson(needs.init.outputs.unchanged-versions) }}
     uses: ./.github/workflows/docker-compose-test-e2e-template.yaml
     secrets: inherit
     with:
       camunda-version: ${{ matrix.versions.camunda-version }}
-      compose-args: ${{ matrix.versions.compose-args }}
+      deps-compose-args: ${{ matrix.versions.deps-compose-args }}
+      main-compose-args: ${{ matrix.versions.main-compose-args }}
+      e2e-test-enabled: ${{ matrix.versions.e2e-test-enabled }}
