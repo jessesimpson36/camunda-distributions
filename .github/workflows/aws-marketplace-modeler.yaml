@@ -26,8 +26,8 @@ jobs:
       - name: Docker login to registry.camunda.cloud
         run: docker login --username "$CAMUNDA_REGISTRY_USERNAME" --password "$CAMUNDA_REGISTRY_PASSWORD" registry.camunda.cloud
         env:
-          CAMUNDA_REGISTRY_USERNAME: ${{ secrets.CAMUNDA_REGISTRY_USERNAME }}
-          CAMUNDA_REGISTRY_PASSWORD: ${{ secrets.CAMUNDA_REGISTRY_PASSWORD }}
+          CAMUNDA_REGISTRY_USERNAME: ${{ secrets.DISTRO_CI_DOCKER_USERNAME_CAMUNDA }}
+          CAMUNDA_REGISTRY_PASSWORD: ${{ secrets.DISTRO_CI_DOCKER_PASSWORD_CAMUNDA }}
      
       - name: web modeler restapi
         uses: ./.github/actions/aws-marketplace-ecr-mirror
