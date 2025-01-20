@@ -39,8 +39,10 @@ jobs:
       # Artifacts.
       - name: Create release artifact
         run: |
-          tar -czf ${{ env.DOCKER_COMPOSE_NAME }}.tgz \
-            -C ${{ env.DOCKER_COMPOSE_WORKING_DIRECTORY }} .
+          cd ${{ env.DOCKER_COMPOSE_WORKING_DIRECTORY }}
+          zip -r ${{ env.DOCKER_COMPOSE_NAME }}.zip .
+          # Copy the artifact to repo root dir.
+          mv ${{ env.DOCKER_COMPOSE_NAME }}.zip $(git rev-parse --show-toplevel)
 
       #
       # Security signature.
@@ -48,11 +50,11 @@ jobs:
         uses: sigstore/cosign-installer@4959ce089c160fddf62f7b42464195ba1a56d382 # v3.6.0
       - name: Sign Helm chart with Cosign
         run: |
-          cosign sign-blob -y ${{ env.DOCKER_COMPOSE_NAME }}.tgz \
+          cosign sign-blob -y ${{ env.DOCKER_COMPOSE_NAME }}.zip \
             --bundle ${{ env.DOCKER_COMPOSE_NAME }}.cosign.bundle
       - name: Verify signed Helm chart with Cosign
         run: |
-          cosign verify-blob ${{ env.DOCKER_COMPOSE_NAME }}.tgz \
+          cosign verify-blob ${{ env.DOCKER_COMPOSE_NAME }}.zip \
             --bundle ${{ env.DOCKER_COMPOSE_NAME }}.cosign.bundle \
             --certificate-identity "https://github.com/${{ github.repository }}/.github/workflows/docker-compose-release-template.yaml@${{ github.ref }}" \
             --certificate-oidc-issuer "https://token.actions.githubusercontent.com"
@@ -71,11 +73,11 @@ jobs:
           To verify the integrity of the artifact using [Cosign](https://docs.sigstore.dev/signing/quickstart/):
           \`\`\`shell
           # Download Docker Compose artifact.
-          curl -LO https://github.com/${{ github.repository }}/releases/download/${{ env.DOCKER_COMPOSE_NAME }}/${{ env.DOCKER_COMPOSE_NAME }}.tgz
+          curl -LO https://github.com/${{ github.repository }}/releases/download/${{ env.DOCKER_COMPOSE_NAME }}/${{ env.DOCKER_COMPOSE_NAME }}.zip
           # Download Docker Compose Cosign bundle.
           curl -LO https://github.com/${{ github.repository }}/releases/download/${{ env.DOCKER_COMPOSE_NAME }}/${{ env.DOCKER_COMPOSE_NAME }}.cosign.bundle
           # Verify with cosign.
-          cosign verify-blob ${{ env.DOCKER_COMPOSE_NAME }}.tgz \\
+          cosign verify-blob ${{ env.DOCKER_COMPOSE_NAME }}.zip \\
             --bundle ${{ env.DOCKER_COMPOSE_NAME }}.cosign.bundle \\
             --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \\
             --certificate-identity "https://github.com/${{ github.repository }}/.github/workflows/docker-compose-release-template.yaml@${{ github.ref }}"
@@ -95,7 +97,7 @@ jobs:
           tag_name: ${{ env.DOCKER_COMPOSE_NAME }}
           body_path: RELEASE-NOTES.md
           files: |
-            ${{ env.DOCKER_COMPOSE_NAME }}.tgz
+            ${{ env.DOCKER_COMPOSE_NAME }}.zip
             ${{ env.DOCKER_COMPOSE_NAME }}.cosign.bundle
       - name: Add release URL to workflow summary
         run: |
