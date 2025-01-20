@@ -86,6 +86,12 @@ jobs:
           - **Release strategy:** Camunda Docker Compose release is a rolling release. Hence, it's always 1 artifact per Camunda minor version.
           - **Latest update:** $(date)
           EOF
+      - name: Clean up old release
+        env:
+          GH_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+        run: |
+          gh release list | tee | grep "${{ env.DOCKER_COMPOSE_NAME }}" &&
+            gh release delete ${{ env.DOCKER_COMPOSE_NAME }} --cleanup-tag
       - name: Create git tag
         run: |
           git tag ${{ env.DOCKER_COMPOSE_NAME }}

@@ -5,6 +5,9 @@ inputs:
   versions-path:
     description: Versions path to match.
     required: true
+  reset-versions:
+    description: Retrun empty list of unchanged versions to force run the matrix.
+    default: "false"
 
 outputs:
   # NOTE: To avoid GHA creating skipped matrix jobs, the logic is reversed here.
@@ -48,6 +51,7 @@ runs:
             echo "${camunda_version}" >> ${UNCHANGED_VERSIONS_TMP_FILE};
           fi
         done
+
         # NOTE: The keys "versions" and "camunda-version" are hard-coded and should be used in the workflow matrix.
         # Unchanged.
         matrix_unchanged="$(cat ${UNCHANGED_VERSIONS_TMP_FILE} |
@@ -56,3 +60,10 @@ runs:
         # Changed.
         should_run="$([[ $(stat --printf="%s" ${CHANGED_VERSIONS_TMP_FILE}) -gt 0 ]] && echo "true" || echo "false")"
         echo "should-run=${should_run}" | tee -a $GITHUB_OUTPUT
+
+        # Force the downstream workflows run for all versions.
+        if [[ ${{ inputs.reset-versions }} == 'true' ]]; then
+          echo "Reset versions..."
+          echo "matrix-unchanged=[]" | tee -a $GITHUB_OUTPUT
+          echo "should-run=true" | tee -a $GITHUB_OUTPUT
+        fi
