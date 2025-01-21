@@ -4,10 +4,7 @@
     // Disable Minor and Major updates by default.
     {
       enabled: false,
-      matchFileNames: [
-        "docker-compose/versions/camunda-8*/.**",
-        "docker-compose/versions/camunda-8*/**",
-      ],
+      matchFileNames: ["docker-compose/versions/**"],
       matchUpdateTypes: ["minor", "major"],
     },
     // Disable unsupported Camunda versions.
@@ -72,11 +69,12 @@
   customManagers: [
     {
       customType: "regex",
+      fileMatch: [".env"],
       datasourceTemplate: "docker",
       matchStrings: [
         "# renovate: datasource=docker depName=(?<depName>[^\\s]+?)(?: (lookupName|packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: registryUrl=(?<registryUrl>[^\\s]+?))?\\s*?(\\S+)=(?<currentValue>\\S+)",
       ],
       versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
-    }
+    },
   ],
 }

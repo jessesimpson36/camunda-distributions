@@ -1,7 +1,10 @@
 {
   dependencyDashboard: true,
-  extends: ["config:recommended", "helpers:pinGitHubActionDigests"],
   labels: ["dependencies"],
+  separateMinorPatch: true,
+  minor: {
+    enabled: true,
+  },
   patch: {
     enabled: true,
   },
