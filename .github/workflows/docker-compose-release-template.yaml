@@ -92,6 +92,8 @@ jobs:
         run: |
           gh release list | tee | grep "${{ env.DOCKER_COMPOSE_NAME }}" &&
             gh release delete ${{ env.DOCKER_COMPOSE_NAME }} --cleanup-tag
+          # To avoid race condition when the release is created again.
+          sleep 5
       - name: Create git tag
         run: |
           git tag ${{ env.DOCKER_COMPOSE_NAME }}
@@ -102,6 +104,7 @@ jobs:
           name: ${{ env.DOCKER_COMPOSE_NAME }}
           tag_name: ${{ env.DOCKER_COMPOSE_NAME }}
           body_path: RELEASE-NOTES.md
+          draft: false
           files: |
             ${{ env.DOCKER_COMPOSE_NAME }}.zip
             ${{ env.DOCKER_COMPOSE_NAME }}.cosign.bundle
