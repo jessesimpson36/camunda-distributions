@@ -54,7 +54,7 @@ jobs:
           - name: Camunda 8.3
             camunda-version: 8.3
           - name: Camunda 8.4
-            camunda-version: 8.5
+            camunda-version: 8.4
           - name: Camunda 8.5
             camunda-version: 8.5
           - name: Camunda 8.6
