@@ -32,30 +32,45 @@
       addLabels: ["version/8.3", "deps/docker-compose"],
       matchFileNames: ["docker-compose/versions/camunda-8.3/**"],
       matchUpdateTypes: ["patch"],
+      // Ignore non-semver versions like 8.6.0-alpha3-rc3 which has a higher precedence than 8.6.0-alpha3 which is not the case.
+      "versionCompatibility": "^(?<version>\\d+\.\\d+\.\\d+-alpha[1-6])(?<compatibility>.*)$",
+      "versioning": "semver"
     },
     {
       groupName: "camunda-docker-compose-8.4",
       addLabels: ["version/8.4", "deps/docker-compose"],
       matchFileNames: ["docker-compose/versions/camunda-8.4/**"],
       matchUpdateTypes: ["patch"],
+      // Ignore non-semver versions like 8.6.0-alpha3-rc3 which has a higher precedence than 8.6.0-alpha3 which is not the case.
+      "versionCompatibility": "^(?<version>\\d+\.\\d+\.\\d+-alpha[1-6])(?<compatibility>.*)$",
+      "versioning": "semver"
     },
     {
       groupName: "camunda-docker-compose-8.5",
       addLabels: ["version/8.5", "deps/docker-compose"],
       matchFileNames: ["docker-compose/versions/camunda-8.5/**"],
       matchUpdateTypes: ["patch"],
+      // Ignore non-semver versions like 8.6.0-alpha3-rc3 which has a higher precedence than 8.6.0-alpha3 which is not the case.
+      "versionCompatibility": "^(?<version>\\d+\.\\d+\.\\d+-alpha[1-6])(?<compatibility>.*)$",
+      "versioning": "semver"
     },
     {
       groupName: "camunda-docker-compose-8.6",
       addLabels: ["version/8.6", "deps/docker-compose"],
       matchFileNames: ["docker-compose/versions/camunda-8.6/**"],
       matchUpdateTypes: ["patch"],
+      // Ignore non-semver versions like 8.6.0-alpha3-rc3 which has a higher precedence than 8.6.0-alpha3 which is not the case.
+      "versionCompatibility": "^(?<version>\\d+\.\\d+\.\\d+-alpha[1-6])(?<compatibility>.*)$",
+      "versioning": "semver"
     },
     {
       groupName: "camunda-docker-compose-alpha",
       addLabels: ["version/8.7", "deps/docker-compose"],
       matchFileNames: ["docker-compose/versions/camunda-alpha/**"],
       matchUpdateTypes: ["patch", "minor"],
+      // Ignore non-semver versions like 8.6.0-alpha3-rc3 which has a higher precedence than 8.6.0-alpha3 which is not the case.
+      "versionCompatibility": "^(?<version>\\d+\.\\d+\.\\d+-alpha[1-6])(?<compatibility>.*)$",
+      "versioning": "semver"
     },
     // End of minor cycle chores.
 
