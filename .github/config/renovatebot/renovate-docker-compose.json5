@@ -32,40 +32,32 @@
       addLabels: ["version/8.3", "deps/docker-compose"],
       matchFileNames: ["docker-compose/versions/camunda-8.3/**"],
       matchUpdateTypes: ["patch"],
-      // Allows any versions that matches stable and alpha, but no -rc (e.g., 8.7.0, 8.7.0-alpha3).
-      allowedVersions: "^\\d+\\.\\d+\\.\\d+(-alpha\\..*)?$"
     },
     {
       groupName: "camunda-docker-compose-8.4",
       addLabels: ["version/8.4", "deps/docker-compose"],
       matchFileNames: ["docker-compose/versions/camunda-8.4/**"],
       matchUpdateTypes: ["patch"],
-      // Allows any versions that matches stable and alpha, but no -rc (e.g., 8.7.0, 8.7.0-alpha3).
-      allowedVersions: "^\\d+\\.\\d+\\.\\d+(-alpha\\..*)?$"
     },
     {
       groupName: "camunda-docker-compose-8.5",
       addLabels: ["version/8.5", "deps/docker-compose"],
       matchFileNames: ["docker-compose/versions/camunda-8.5/**"],
       matchUpdateTypes: ["patch"],
-      // Allows any versions that matches stable and alpha, but no -rc (e.g., 8.7.0, 8.7.0-alpha3).
-      allowedVersions: "^\\d+\\.\\d+\\.\\d+(-alpha\\..*)?$"
     },
     {
       groupName: "camunda-docker-compose-8.6",
       addLabels: ["version/8.6", "deps/docker-compose"],
       matchFileNames: ["docker-compose/versions/camunda-8.6/**"],
       matchUpdateTypes: ["patch"],
-      // Allows any versions that matches stable and alpha, but no -rc (e.g., 8.7.0, 8.7.0-alpha3).
-      allowedVersions: "^\\d+\\.\\d+\\.\\d+(-alpha\\..*)?$"
     },
     {
       groupName: "camunda-docker-compose-alpha",
       addLabels: ["version/8.7", "deps/docker-compose"],
       matchFileNames: ["docker-compose/versions/camunda-alpha/**"],
-      matchUpdateTypes: ["patch", "minor"],
-      // Allows any versions that matches stable and alpha, but no -rc (e.g., 8.7.0, 8.7.0-alpha3).
-      allowedVersions: "^\\d+\\.\\d+\\.\\d+(-alpha\\..*)?$"
+      // Allows only patch and alpha, but no -rc (e.g., 8.7.0, 8.7.0-alpha3, but no 8.7.0-alpha3-rc1).
+      allowedVersions: "^8\\.7\\.\\d+(-alpha[0-9]*)?$"
+
     },
     // End of minor cycle chores.
 
