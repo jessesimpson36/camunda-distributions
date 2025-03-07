@@ -2,7 +2,7 @@
 # this docker-compose.yaml is designed to be used by developers to run
 # an environment locally. It is not designed to be used in production.
 # We recommend to use Kubernetes in production with our Helm Charts:
-# https://docs.camunda.io/docs/8.3/self-managed/about-self-managed/
+# https://docs.camunda.io/docs/8.3/self-managed/platform-deployment/helm-kubernetes/deploy/
 # For local development, we recommend using KIND instead of `docker-compose`:
 # https://docs.camunda.io/docs/self-managed/platform-deployment/helm-kubernetes/guides/local-kubernetes-cluster/
 
