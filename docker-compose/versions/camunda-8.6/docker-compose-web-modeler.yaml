@@ -5,10 +5,10 @@
 #
 # Note: this file is using Mailpit to simulate a mail server
 
-
 services:
 
   modeler-db:
+
     container_name: modeler-db
     image: postgres:${POSTGRES_VERSION}
     healthcheck:
