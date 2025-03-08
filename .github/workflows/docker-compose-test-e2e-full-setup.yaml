@@ -88,7 +88,6 @@ jobs:
             e2e-test-enabled: false
           - name: Camunda 8.6 - Web Modeler Standalone
             camunda-version: "8.6"
-            deps-compose-args: "--profile identity"
             main-compose-args: "-f docker-compose-web-modeler.yaml"
             e2e-test-enabled: false
           # Camunda Alpha
