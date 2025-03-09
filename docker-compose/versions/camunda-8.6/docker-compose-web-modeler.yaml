@@ -7,6 +7,7 @@ services:
 
   web-modeler-db:
     container_name: web-modeler-db
+
     image: postgres:${POSTGRES_VERSION}
     healthcheck:
       test: pg_isready -d web-modeler-db -U web-modeler-db-user
