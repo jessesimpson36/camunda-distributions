@@ -4,10 +4,10 @@
   // https://docs.renovatebot.com/key-concepts/presets/#how-to-use-presets
   extends: [
     "config:recommended",
-    "github>camunda/camunda-self-managed//.github/config/renovatebot/renovate-docker-compose.json5",
-    "github>camunda/camunda-self-managed//.github/config/renovatebot/renovate-aws-marketplace.json5",
-    "github>camunda/camunda-self-managed//.github/config/renovatebot/renovate-github-actions.json5",
-    "github>camunda/camunda-self-managed//.github/config/renovatebot/renovate-main.json5",
+    "github>camunda/camunda-distributionsd//.github/config/renovatebot/renovate-docker-compose.json5",
+    "github>camunda/camunda-distributionsd//.github/config/renovatebot/renovate-aws-marketplace.json5",
+    "github>camunda/camunda-distributionsd//.github/config/renovatebot/renovate-github-actions.json5",
+    "github>camunda/camunda-distributionsd//.github/config/renovatebot/renovate-main.json5",
     ":semanticCommitTypeAll(deps)",
   ],
 }

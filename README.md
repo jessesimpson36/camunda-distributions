@@ -18,13 +18,13 @@ For more details, check the directory of [Camunda Docker Compose](./docker-compo
 
 ## Issues
 
-If you find any problem with the Camunda 8 Self-Managed distributions, create a [new issue](https://github.com/camunda/camunda-self-managed/issues).
+If you find any problem with the Camunda 8 Self-Managed distributions, create a [new issue](https://github.com/camunda/camunda-distributions/issues).
 
 ## Contributing
 
 We value all feedback and contributions. To start contributing to this project, please:
 
-- **Don't create a PR without opening [an issue](https://github.com/camunda/camunda-self-managed/issues/new/choose)
+- **Don't create a PR without opening [an issue](https://github.com/camunda/camunda-distributions/issues/new/choose)
   and discussing it first.**
 
 ## License
